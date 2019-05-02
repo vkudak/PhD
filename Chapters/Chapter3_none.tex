@@ -1,0 +1,143 @@
+\chapter{Kepler data processing}
+\label{Chapter3}
+
+\section{Fitting eclipsing binary minima}
+To obtain precise time of minima in eclipsing binary systems we need to define function that will fit minima shape with best precision.
+There is phenomenological and physical methods that allow fo fit all light curve. Because we have a large number of eclipsing binary systems in Kepler EB catalogue we prefer to use phenomenological fitting of only minima parts of light curves.
+
+\subsection{Gauss and Lorentzian fit}
+The main advantage of this two function is their simplicity and ability to get coordinates of centre ($x_{c}$) after fitting light curve.
+With another more complex functions that are discussed below we must to derivative it before we can find $x_{c}$.
+
+Gaussian function:
+\begin{equation}\label{eq:gaus}
+F(\varphi)= A\cdot \exp(-\frac{(\varphi - x_{c})^2}{2\sigma^2})
+\end{equation}
+
+Lorentzian function: 
+\begin{equation}\label{eq:lorentz}
+F(\varphi)= A \frac{w^2}{w^2 + (\varphi - x_{c})^2}
+\end{equation}
+
+Functions perform good fit when EB minima has shape similar to normal distribution. In case of narrow minima such functions have a slightly larger error. Also function perform good fit when we fit only minima part but not all light curve. 
+
+\subsection{Mikulasek phenomenological model}
+Method is aimed to establish a general model of LCs of eclipsing
+systems (ES; both eclipsing binaries and stars with transiting
+planets) that could fit the LCs with an accuracy of 1\% of their
+amplitudes or better. 
+
+The model function of a monochromatic light curve (expressed in magnitudes) of eclipsing
+systems $F(\varphi, \lambda)$, can be assumed as the sum of three particular functions:
+
+\begin{equation} \label{eq:mik_general}
+F(\varphi, \lambda) = F_{e}(\varphi, \lambda) + F_{p}(\varphi, \lambda) + F_{c}(\varphi, \lambda)
+\end{equation}
+
+where $F_{e}$ describes the mutual eclipses of the components, $F_{p}$ models the proximity effects,
+while $F_{c}$ approximates the O’Connell effect (irrespectively of its physical cause)
+
+The profiles of both minima
+are complex functions determined primarily by the geometry
+of the system and the relative brightness of components in
+a given spectral region centred at the effective wavelength $\lambda_{eff}$.
+The contribution of eclipses $F_{e}(\vartheta, \lambda_{eff})$ to an ES light curve can
+be approximated by a sum of two special periodic functions of
+phase function $\vartheta$. In the case of circular orbits, eclipses are exactly
+symmetrical around their centres at phases $\varphi_{01}$ and $\varphi_{02}$. If
+we put the origin of the phase function $M_{0}$ at the time of the
+primary minimum, then $\varphi_{01} = 0$, $\varphi_{02} = 0.5$.
+The model function was selected so that it describes as aptly
+as possible those parts of LCs that are in the vicinity of their
+inflex points, where their slopes are maximum. The functions
+are parameterized by their widths $D_{1}, D_{2}$, eclipse LC kurtosis
+coefficients $\Gamma_{1}, \Gamma_{2}$, dimensionless correcting factors $C_{1},C_{2}$, and
+central depths $A_{1}(\lambda_{eff}), A_{2}(\lambda_{eff})$:
+
+\begin{equation} \label{eq:mik_main}
+F_{e}(\vartheta, \lambda_{eff})=\sum_{k=1}^{n_{e}} A_{k} \left( 1+C_{k} \frac{\varphi_{k}^2}{D_{k}^2}\right) 
+\left\lbrace 1-\left\lbrace 
+1-exp\left[ 1-\cosh\left(\frac{\varphi_{k}}{D_{k}}\right)\right] 
+\right\rbrace^{\Gamma_{k}}\right\rbrace 
+\end{equation}
+
+\begin{equation} \label{eq:mik_2}
+\varphi_{k} = \vartheta - 0.5 (k - 1) - round \left[ \vartheta - 0.5 (k - 1)\right] ,
+\end{equation}
+
+where the summation is over the number of eclipses during one
+cycle, $n_{e}$: $n_{e} = 2$ or $n_{e} = 1$ (the common situation for exoplanet
+transits). Each eclipse in a given colour is thus described by only
+four parameters – its depth $A$, width $D$, kurtosis $\Gamma$, and the correcting
+parameter $C$. \parencite{mikulasek2015}
+
+In the case of EBs with two minima in a cycle ($n_{e} = 2$), we
+need eight parameters, but sometimes the number of needed parameters
+can be smaller. Inspecting the parameters $D, \Gamma$, and
+$C$ for both eclipses of many EBs, we have concluded that they
+are as a rule nearly the same: especially $D1 \cong D2, \Gamma_{1} \cong \Gamma_{2}$, and
+$C_{1} \cong C_{2}$. We therefore usually need only five monochromatic parameters
+($A_{1}, A_{2}, D, \Gamma,C$). The parameter $C$ is mostly comparable
+to its uncertainty, so we can neglect it entirely. Then we need
+just four parameters! On the other hand, in EBs with totalities
+we see that the bottoms of their occultations are flat whilst transits
+are convex. It can be described by introducing of different
+parameters $C_{1},C_{2}$.
+
+The LCs of the exoplanet transits ($n_{e} = 1$) need only
+four parameters ($A, D, \Gamma,C$; in cases of very precise
+measurements, we add another dimensionless parameter $K$:
+
+\begin{equation}\label{eq:mik_3}
+F_{e} = A\left( 1+C \frac{\varphi^2}{D^2}+K\frac{\varphi^4}{D^4}\right) 
+\left\lbrace 1- \left\lbrace 1-exp\left[ 1-\cosh \left( \frac{\varphi}{D}\right) \right] \right\rbrace ^{\Gamma} \right\rbrace  
+\end{equation}
+
+Testing several dozens of LCs of various types of ESs, we found
+that the standard deviation of the fit is typically well below one percent. 
+The only minor inconvenience is the existence of a spike (a jump in derivatives) in 
+the mid-eclipses for LCs with $\Gamma < 1$.
+
+The contribution of proximity effects $F_{p}(\vartheta)$ should be an
+even function symmetric with the phases 0.0 and 0.5, consequently
+they can be satisfactorily expressed as a linear combination of $n_{p}$ elementary cosine functions $\cos(2\pi \vartheta)$,
+$\cos(4\pi \vartheta)$, $\cos(6\pi \vartheta)$, etc. The even terms are the consequence
+of the ellipticity of tidally interacting components, whilst the odd
+terms result from the differences between the near and far sides
+of components. As a rule we can limit ourselves only to the first
+two or three terms in the $F_{p}$ \parencite{russell1952,kallrath1999}. 
+The O’Connell effect contribution $F_{c}(\vartheta)$ can be modelled well by a simple sinusoid \parencite{davidge1984, wilsey2009}:
+
+\begin{equation}\label{eq:mik_Fp}
+F_{p}  = \sum_{k=n_{e}+1}^{n_{p}+n_{e}} A_{k}\cos \left[ 2\pi(k-n_{e})\vartheta\right]
+\end{equation}
+
+\begin{equation}\label{eq:mik_Fc}
+F_{c}  = \sum_{k=n_{p}+n_{e}+1}^{n_{c}+n_{p}+n_{e}} A_{k}\cos(2\pi\vartheta)
+\end{equation}
+
+where $n_{p}$ is the number of terms in $F_{p}(\vartheta)$: $n_{p} = 0, 1, 2, 3,\ldots $,
+$n_{c} = 0$, if the O’Connell asymmetry is not present, otherwise $n_{c} = 1$.
+
+\subsection{Andronov phenomenological model}
+The basic function („special shape“) for the eclipse is $H(z)=(1-\left| z\right|^\beta)^{3/2}$, $-1\leq z \geq +1$, where $\beta=C_{5}$ 
+is the parameter describing behaviour close to the mid-eclipse (0 – very narrow, 1 – triangular, 2 – parabolic, $\gg2$ – flat).
+
+The complete function includes a TP2 part (a trigonometrical polynomial of the second order), which
+approximates three effects: reflection, ellipticity and O’Connell and has 12 parameters, including two for the
+corrected initial epoch and the period (Andronov, Tkachenko \& Chinarova, 2016):
+
+\begin{equation}\label{eq:andronov}
+\begin{split}
+x(\phi)=C_{1}+C_{2}\cos(2\pi(\phi-\phi_{0}))+ C_{3}\sin(2\pi(\phi-\phi_{0}))+C_{4}\cos(4\pi(\phi-\phi_{0}))+ \\
+C_{5}\sin(4\pi(\phi-\phi_{0}))+ C_{6}H((\phi-\phi_{0})/C_{8};C_{9})+ C_{7}H((\phi-\phi_{0}-0.5)/C_{8};C_{10})
+\end{split}
+\end{equation}
+
+In previous works \parencite{andronov2012}, $\phi_{0}=0$ was used but, in \cite{andronov2016}, authors added two parameters
+(C11, C12) to correct the initial epoch and the period. Of course, when needed, it is possible to add more
+parameters to describe the possible period changes.
+
+Even if more complicated models may be comparable in accuracy, the
+smallest possible number of the NAV (“New Algol Variable”)  parameters and their clear physical sense is the advantage of this method. 
+

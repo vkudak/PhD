@@ -1,0 +1,487 @@
+% % % %!TeX program = lualatex
+% %!TeX program = pdflatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Masters/Doctoral Thesis
+% LaTeX Template
+% Version 2.2.2 (20/2/16)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Version 2.x major modifications by:
+% Vel (vel@latextemplates.com)
+%
+% This template is based on a template by:
+% Steve Gunn (http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/)
+% Sunil Patel (http://www.sunilpatel.co.uk/thesis-template/)
+%
+% Template license:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt, english, 
+oneside, 
+onehalfspacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
+%draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
+%nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
+%liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
+toctotoc, % Uncomment to add the main table of contents to the table of contents
+%parskip, % Uncomment to add space between paragraphs
+%nohyperref, % Uncomment to not load the hyperref package
+headsepline, % Uncomment to get a line under the header
+%aas_macros,
+]{MastersDoctoralThesis} % The class file specifying the document structure
+
+% % % % % % % % % % % % % % % % % % % %
+\newcommand{\apjs}{ApJS}
+\newcommand{\apj}{ApJ}
+\newcommand{\apjl}{ApJ}
+\newcommand{\mnras}{MNRAS}
+\newcommand{\aap}{A\&A}
+\newcommand{\aj}{AJ}
+\newcommand{\nat}{Nature}
+\newcommand{\bain}{Bull.~Astron.~Inst.~Netherlands} 
+\newcommand{\araa}{ARA\&A}
+\newcommand{\icarus}{Icarus}
+\newcommand{\jrasc}{JRASC}
+\newcommand{\pasp}{PASP}
+\newcommand{\aapr}{A\&A~Rev.}
+\newcommand{\planss}{Planet.~Space~Sci.}   % Planetary Space Science
+\newcommand{\jcp}{J.~Chem.~Phys.}          % Journal of Chemical Physics
+\newcommand{\na}{New A}                    % New Astronomy              
+
+% % % % % % % % % % % % % % % % % % % % % %
+%\usepackage{newtxmath,newtxtext}
+%\usepackage{newtxfonts}
+%\usepackage{mathptmx}
+%\usepackage{fontspec} 
+%\setmainfont[Ligatures = TeX]{Times New Roman} 
+%\fontencoding{T1}\selectfont
+
+%\usepackage[T1]{fontenc}
+%\usepackage{lmodern}
+
+\usepackage{fontspec} 
+\setmainfont{Times New Roman}
+
+
+%\usepackage[titletoc]{appendix}% http://ctan.org/pkg/appendices
+\usepackage[toc,titletoc,title]{appendix}  %page   + to add page APENDECISES
+\usepackage{tocloft}
+
+%\usepackage[nottoc]{tocbibind}
+\usepackage{tocbibind}
+
+\usepackage{natbib}
+%\renewcommand{\bibname}{References}
+%\renewcommand{\refname}{References}
+
+%http://tex.stackexchange.com/questions/171879/use-article-reference-style-with-book-documentclass
+%\renewcommand\bibsection{%
+%  \section*{\bibname\markright{\MakeUppercase{\bibname}}}}
+%\renewcommand{\bibname}{References}
+
+
+\usepackage[breaklinks=true]{hyperref} %% to avoid \citeads line fills
+\bibpunct{(}{)}{;}{a}{}{,} %% natbib format for A&A and ApJ
+
+\bibliographystyle{aa_url} % style aa.bst
+%\bibliography{biblio_lib.bib} % your references Yourfile.bib
+
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{braket}
+%\usepackage{esvect}
+\usepackage[final]{pdfpages}
+%\addbibresource{biblio_lib.bib} % The filename of the bibliography
+
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+%\usepackage[outdir=./]{epstopdf} % Required to generate eps to pdf
+%\usepackage{enumitem}
+\usepackage[shortlabels]{enumitem}
+\usepackage{gensymb}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+%\usepackage{wasysym}
+\usepackage{comment}
+
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}      % Chanhed fig numeration from  1.1, 1.2, 1.3  ->  1,2,3
+%\counterwithout{table}{chapter}
+
+
+%http://tex.stackexchange.com/questions/62516/how-to-suppress-chapter-in-chapter-while-keeping-numbering
+\usepackage{lipsum}% http://ctan.org/pkg/lipsum                         
+\makeatletter                                                
+\def\@makechapterhead#1{%
+  \vspace*{0\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+        %\huge\bfseries \@chapapp\space \thechapter
+        \Huge\bfseries \thechapter.\space%
+        %\par\nobreak
+        %\vskip 20\p@
+      \fi
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+\makeatother
+
+
+
+%\usepackage{titlesec}
+%\newcommand{\bigrule}{\titlerule[0.5mm]}
+%\titleformat{\chapter}[display]
+%{\bfseries\Huge}
+%{
+%\vspace{-1.125in} %\titlerule \filleft \Large \chaptertitlename\ \Large\thechapter
+%}{0mm}
+%{\filleft \Large\thechapter. }[\vspace{0.5mm} \bigrule]
+
+%\renewcommand{\partname}{}
+%\renewcommand{\chaptername}{}
+%\renewcommand{\thechapter}{}
+%\renewcommand{\thesection}{}
+
+%\hyphenation{exo-planets}
+%----------------------------------------------------------------------------------------
+%	MARGIN SETTINGS
+%----------------------------------------------------------------------------------------
+
+\geometry{
+	paper=a4paper, % Change to letterpaper for US letter
+	inner=1.5cm, % Inner margin
+	outer=2.0cm, % Outer margin
+	bindingoffset=2cm, % Binding offset
+	top=2.5cm, % Top margin
+	bottom=2.5cm, % Bottom margin
+	%showframe,% show how the type block is set on the page
+}
+
+%----------------------------------------------------------------------------------------
+%	THESIS INFORMATION
+%----------------------------------------------------------------------------------------
+
+\thesistitle{Circumbinary planets and brown dwarfs} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
+\supervisor{Doc. Mgr. \v{S}tefan Parimucha PhD.} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
+\examiner{} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
+\degreeD{} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
+\author{Mgr. Viktor \textsc{Kudak}} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
+\addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
+
+\subject{Physics} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
+\keywords{} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
+\university{\href{http://www.upjs.sk}{Pavol Jozef \v{S}af\'{a}rik University in Ko\v{s}ice}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
+\department{\href{http://ktfa.science.upjs.sk}{Department of Theoretical Physics and Astrophysics}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+\group{\href{http://www.upjs.sk/prirodovedecka-fakulta}{Faculty of Science, Institute of Physics}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
+\faculty{\href{http://www.upjs.sk/prirodovedecka-fakulta}{Faculty of Science}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
+
+\hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
+\hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
+\hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
+
+\begin{document}
+
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+
+\pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+\begin{center}
+
+{\scshape\Large PAVOL JOZEF \v{S}AF\'{A}RIK UNIVERSITY IN KO\v{S}ICE \par}\vspace{0.1cm} % University name
+{\scshape\Large Faculty of Science, Institute of Physics \par}\vspace{0.2cm}
+{\scshape Department of Theoretical Physics and Astrophysics \par}\vspace{3.5cm}
+
+
+{\huge \bfseries \ttitle\par}\vspace{2.9cm} % Thesis title
+
+
+\textsc{\Large Dissertation Thesis}\\[6cm] % Thesis type
+
+\begin{minipage}[t]{0.4\textwidth}
+\begin{flushleft} \large
+{\bfseries 2017} 
+\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+\begin{flushright} \large
+{\bfseries \authorname} % Author name - remove the \href bracket to remove the link
+\end{flushright}
+\end{minipage}\\[3cm]
+\vfill
+\end{center}
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	SECOND TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+\pagestyle{empty}
+\begin{center}
+
+{\scshape\Large PAVOL JOZEF \v{S}AF\'{A}RIK UNIVERSITY IN KO\v{S}ICE \par}\vspace{0.1cm} % University name
+{\scshape\Large FACULTY OF SCIENCE \par}\vspace{3.5cm}
+
+
+{\huge \bfseries \ttitle\par}\vspace{1.5cm} % Thesis title
+
+%\textsc{\large Thesis for dissertation exam}\\[3.5cm] % Thesis type
+\MakeUppercase{\large Thesis for dissertation exam}\\[3.5cm]
+
+\begin{minipage}[t]{0.35\textwidth}
+\begin{flushleft} \large
+{\small{Study program:}}\\[0.2cm] 
+{\small{Field of study:}}\\[0.2cm] 
+{\small{Supervising department:}}\\[0.2cm] 
+{\small{Supervisor:}}\\[0.2cm] 
+\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.6\textwidth}
+\begin{flushright} \large
+{\small{Astrophysics}}  \\[0.2cm]
+{\small{4.1.8 Astrophysics}}  \\[0.2cm] 
+{\small{Department of Theoretical Physics and Astrophysics}}  \\[0.2cm] 
+{\small{\supname}}  \\[0.2cm] 
+\end{flushright}
+\end{minipage}\\[3cm]
+
+\begin{minipage}[t]{0.4\textwidth}
+\begin{flushleft} \large
+\emph{\bfseries Ko\v{s}ice 2017} 
+\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+\begin{flushright} \large
+{\bfseries \authorname} % Author name - remove the \href bracket to remove the link
+\end{flushright}
+\end{minipage}\\[1cm]
+\vfill
+\end{center}
+\end{titlepage}
+%----------------------------------------------------------------------------------------
+%	DECLARATION PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{declaration}
+\addchaptertocentry{\authorshipname}
+
+\noindent I, ~\authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own. I confirm that:
+
+\begin{itemize}
+\item This work was done wholly or mainly while in first two years of candidature for a research degree at the Pavol Jozef \v{S}af\'{a}rik University in Ko\v{s}ice.
+\item Where I have consulted the published work of others, this is always clearly attributed.
+\item Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this work is entirely my own work.
+\item I have acknowledged all main sources of help.
+\item Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\[3.5cm]
+\end{itemize}
+
+\noindent Signed:\\
+\rule[0.5em]{25em}{0.5pt} % This prints a line for the signature
+
+\noindent Date:\\
+\rule[0.5em]{25em}{0.5pt} % This prints a line to write the date
+\end{declaration}
+
+\cleardoublepage
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+% ENGLISH
+\begin{abstract}
+\addchaptertocentry{Abstract} % Add the abstract to the table of contents
+
+\begin{center}
+	{\huge{Abstract} \par}
+	\bigskip
+	\end{center}
+REWRITE!!!!!!!!!!!!!!!!!!\\
+The interest to the study of localized states in atomic physics is, on the one hand, evoked by the fact, that in the numerous cases their analysis can be carried out analytically. Such an approach belongs to not much approaches, which allow to investigate the system with non-factorized variables without the use of perturbation theory, adiabatic approximation or cumbersome numerical methods.
+On the other hand, aforementioned states very frequently occur and in numerous cases play crucial role. Thus, the idea on localization of flow in the vicinity of the most probable tunneling path allows to develop relativistic version of boundary layer method, namely, the method of parabolic equation, proposed already in the works by M.A.Leontovich and V.A.Fok. This method allows to find explicit form of wave functions, localized near classical trajectories, and represents the algorithm suitable for calculation of atom ionization probability in homogeneous field, for calculation of values of exchange interaction between multi-charge ion and atom, and for calculation of probability of tunneling chemical reactions.  
+
+
+\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECOND (SLOVAK) ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{abstract}
+\addchaptertocentry{Abstrakt} % Add the abstract to the table of contents
+
+\begin{center}
+	{\huge{Abstrakt} \par}
+	\bigskip
+	\end{center}
+REWRITE!!!!!!!!!!!!!!!!!!\\	
+Záujem o štúdium lokalizovaných stavov v atómovej fyzike je, na jednej strane,  vyvolaný skutočnosťou, že v mnoých prípadoch  sa ich analýza da úplne uskutočniť analyticky. Takýto prístup patrí k jedným z mala prístupov, ktoré dovoľujú skúmať system s nefaktorizovanými premennými bez použitia poruchovej teórie, adiabatického priblíženia alebo zložitých numerických metód.
+
+Na druhej strane, uvedené stavy sa často vyskytujú a v mnohých prípadoch zohravajú rozhodujúcu úlohu. Skutočne, myšlienka o lokalizácii toku v okoli najpravdepodobnejšej dráhy tunelovania umožňuje rozvinuť relativistickú verziu metódy hraničnej vrstvy, menovite metódy parabolickej rovnice, navrhnutej ešte v prácach M.A. Leontoviča a V.A. Foka. Táto metóda umožňuje nájsť explicitný tvar vlnových funkcií, lokalizovaných v okolí klasických trajektórií a predstavuje algoritmus prispôsobený pre výpočet pravdepodobnosti ionizácie atómu v konštantnom polí, výpočet veľkosti výmennej interakcie medzi viacnábojovým iónom  a atómom a pre výpočet pravdepodobnosti tunelových chemických reakcií.
+
+
+\end{abstract}
+
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+
+
+	
+\begin{acknowledgements}
+
+\addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
+
+
+I would like to express my deep gratitude to my supervisor \supname\,, for all of his support and guidance he offered throughout the elaboration of my work. I would also like to thanks to my wife, friends and colleagues for their advices and constructive suggestions to this work.
+
+\end{acknowledgements}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Prints the main table of contents
+
+%\listoffigures % Prints the list of figures
+
+%\listoftables % Prints the list of tables
+
+%----------------------------------------------------------------------------------------
+%	MOTIVATION PAGE
+%----------------------------------------------------------------------------------------
+
+%\begin{abstract}
+%\addchaptertocentry{Motivation and outline} % Add the abstract to the table of contents
+%
+%\begin{center}
+%	{\huge\textbf{Motivation and outline} \par}
+%%	\bigskip
+%	\end{center}
+%Multiple-star systems are interesting objects for study for a number of reasons. The orbital \mbox{architecture} and masses of the
+%constituent stars can inform us about the not-so-well understood process of the formation of systems of multiple stars. 
+%The orbital architecture of a multiple-star system can give us knowledge about the final contraction of the interstellar cloud that formed the system, provided the dynamical evolution of the system has left the initial configuration relatively unaltered (see, e.g., \cite{boss1991},\cite{bate2009}, \cite{reirpurth2012}).
+%
+%Moreover, understanding the relative frequency of binaries versus triples and quadruples 
+%(see, e.g., \cite{tokovinin2006}, \cite{pribula2006}, \cite{raghavan2010}) 
+%is important in anticipating what other unseen stars in any particular system may be presented. 
+%The hypothetical presence of such bodies may be important in explaining various effects that are observed in
+%these binaries, but not otherwise explained (see, e.g., \cite{eggleton2001} and references therein). 
+%Finally, studies of binary star evolution, and especially the phases involving mass transfer, have dramatically transformed
+%our overall understanding of stellar evolution.
+%
+%%Eclipsing binaries (EBs) can serve as independent distance indicators: one can study the dynamical evolution of the orbits,
+%%test the stellar structure models, or discover additional components in these systems (see e.g., Guinan \& Engle 2006).
+%%On the other hand, the Kepler satellite (Borucki et al. 2010) provides us with unprecedented accuracy of photometric data.
+%%From this huge set of observations, many multiple systems were detected
+%%after the first data release (Prša et al. 2011), which was later extended by Slawson et al. 2011.
+%%Such a huge database of EBs observed with superb precision
+%%and monitored continuously over a period of several years
+%%encouraged several teams to look for a periodic modulation of
+%%data, indicative of triple systems. The use of such a method and its limitations are described elsewhere (e.g., Irwin 1959, or Mayer 1990). 
+%%For example, Gies et al. (2012) presented 41 suspected triples, while Conroy et al. (2014) listed 236
+%%potential triples. More multiple system candidates were published by J.A. Orosz (see Conroy et al. 2014). 
+%%Moreover, Rappaport et al.(2013) presented 39 dynamically interesting systems, where the third-body periods are short enough 
+%%(if compared with the binary period) that some interaction between the orbits is
+%%expected or even observed (e.g., changing of the inclination).
+%%On the other hand, most of the triples listed in Conroy et al. (2014) have periods of the order of hundreds or even thousands
+%%of days, so long periods were usually only estimated (due to limited coverage of the Kepler data) or were influenced by large errors.
+%%For this reason we decided to perform a similar analysis to
+%%detect more multiple-body systems, but based on a larger data set.
+%
+%% % % % % % % % % % %
+%The outline of this work is as follows. Chapter~\ref{Chapter1} describes classification of eclipsing bi\-na\-ries. 
+%We focus our attention on EBs because they are the most convenient type of \mbox{binary} stars to find circumbinary planets and brown dwarfs.
+%In Chapter~\ref{Chapter_exo}, the definition of exo\-planets and brown dwarfs is given. The problem of object separation between this two classes is described. Chapter~\ref{Chapter_oc} explains basics of O-C diagrams analysis. Very important for precise build of O-C diagram is determination of minima times, main methods of such task solution is given in Chapter~\ref{Chapter_minima_det}.
+%In Chapter~\ref{Chapter2} main aspects of Kepler mission are described as our main data source. 
+%Main objective of Chapter~\ref{Chapter3} is to describe all limitations related to detection of circumbinary planets and brown dwarfs. The process of O-C diagram calculation from data in Kepler EB catalogue is briefly described. Chapter~\ref{Chapter_Aim} presents main aims and objectives of future dissertation thesis.
+%\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - CHAPTERS
+%----------------------------------------------------------------------------------------
+\renewcommand{\bibname}{References}
+\mainmatter % Begin numeric (1,2,3...) page numbering
+
+\pagestyle{thesis} % Return the page headers back to the "thesis" style
+
+% Include the chapters of the thesis as separate files from the Chapters folder
+% Uncomment the lines as you write the chapters
+
+
+\include{Chapters/Intro}
+\include{Chapters/Chapter_exoplanets}
+\include{Chapters/Chapter_EB}
+\include{Chapters/motivation}
+\include{Chapters/oc_sim2}
+\include{Chapters/KeplerEB}
+
+\include{Chapters/Conclusions}
+
+% % % % %  To do LIST:
+% + abstracti
+%pridat intro na zaciatku . CH1 ?   
+%+ outline
+%pridat tabulu z BD  (exoplaneti) co su objavene v EB systemoch    V attach ked velke   (name, alfa, del, system, Mass, ref  )  NY Vyr ??
+%
+%Skusit urobit numeraciu obrazkov 1,2,3,4  a nie 1.1, 1.2,DONE,,,,,,,,,  +tabule?????
+
+%Motivation .... outline ide na zaciatok.
+
+%K O-C diagrams pridat obrazky O-C z mass transfer, applgate, 3rd body
+% % % % % % %
+
+%\include{Chapters/Chapter_OC}
+%\include{Chapters/Chapter_minima_det}
+%\include{Chapters/Chapter2}
+%\include{Chapters/Chapter3}
+%\include{Chapters/Chapter_Aim}
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
+
+%\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
+
+% Include the appendices of the thesis as separate files from the Appendices folder
+% Uncomment the lines as you write the Appendices
+
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+%\printbibliography[heading=bibintoc,title={References}]
+
+%\setlength\bibitemsep{10pt}
+%\setlength{\bibsep}{0pt}
+\setlength{\bibsep}{0pt plus 0.3ex}
+%\setstretch{1}
+\bibliography{biblio_lib.bib}
+
+%----------------------------------------------------------------------------------------
+
+
+%\includepdf[pages=-]{Appendices/aasp-kudak-OC.pdf}
+%\begin{appendices}
+%
+%\end{appendices}
+
+\end{document}

@@ -1,0 +1,113 @@
+\chapter{Minima Times Determination}
+\label{Chapter_minima_det}
+In order to obtain precise time of minima in eclipsing binary systems we need to define function that will fit minima shape with best precision.
+There is to different approaches for eclipsing binary LC fit: (i) finding parameters of LC that will describe physical processes of binary star system or (ii) phenomenological (mathematical) modelling of observed data variations.
+
+There is also a possibility to fit LC minima with simple functions or use Kwee and van Woerden method.
+Individual approach requires narrow shape minima. Each branch of such minima must be fitted with some linear fit and time of minima will be found 
+at the intersection of lines.
+
+In this work we prefer to use phenomenological fitting methods or use simple function fitting, because we have a large number of eclipsing binary systems in Kepler EB catalogue. It is not possible to find each system's physical parameters in every case or it can take much longer time. All this methods are described below.
+
+
+\section{Kwee and van Woerden Method}
+Based on assumption that the set of data points around the minimum can be represented by the curve that is strictly 
+symmetric with respect to the true minimum epoch $T_{0}$. Then an even function of time $\tau=T-T_{0}$ can be chosen to
+fit the observations in sense of least-squares method. However the function itself is not evaluated. Instead a preliminary 
+minimum time $T_{1}$ is estimated and $2K$ magnitudes (equation \ref{eq:kwee_m}) spaced at equal time intervals $\Delta$ symmetrically to $T_{1}$ are formed by linear interpolation between the observations.  Then $S(T_{1})$ is computed.
+\begin{equation} \label{eq:kwee_m}
+m_{\pm k} = m(T_{1}\pm k \Delta), ~~~ k=(1,K)
+\end{equation}
+
+\begin{equation} \label{eq:kwee_S}
+S(T_{1}) = \sum_{k=1}^{K}(m_{k}-m_{-k})^2
+\end{equation}
+
+The procedure is repeated twice by shifting assumed minimum time by~ $\pm \Delta/2$ ~yielding $S(T_{1}+\Delta/2)$ ~and~ $S(T_{1}-\Delta/2)$.
+The three values of $S$ define a parabola~ $S(T)=aT^2+bT+c$ ~with minimum at~ $T_{KW}=-b/2a$ ~which is considered to represent the 
+true minimum time $T_{0}$. The mean error of minimum epoch is estimated by
+
+\begin{equation} \label{eq:kwee_err}
+\sigma_{KW} =\sqrt{\frac{4ac-b^2}{4a^2(Z-1)}} 
+\end{equation}
+where $Z$ is the number of independent magnitude pairs. For~ $2K=N$  ($N$ is a number of observations) the authors take  $Z=N/4$ ~if observations are not equally spaced in time ~\citep{kwee1956, brainhorst1973}.
+
+Main disadvantage of this method is that we must have symmetrical shape of minimum and error of such method are unrealistically small. 
+
+\section{Simple Function Methods}
+
+\subsection{Fitting with Gauss and Lorentzian Functions}
+The main advantage of this two functions is their simplicity and ability to get coordinates of centre ($x_{c}$) after fitting light curve.
+With another more complex functions that are discussed below we must to derivate it before we can find $x_{c}$.
+
+Gaussian function:
+\begin{equation}\label{eq:gaus}
+F(t)= A\cdot \exp(-\frac{(t - x_{c})^2}{2\sigma^2})
+\end{equation}
+
+Lorentzian function: 
+\begin{equation}\label{eq:lorentz}
+F(t)= A \frac{w^2}{w^2 + (t - x_{c})^2}
+\end{equation}
+where $A$ is the amplitude, $t$ is the time, $w$ is the half-width at half-maximum, $\sigma$ is the standard deviation and $x_{c}$ is the coordinates of centre. 
+
+Functions perform good fit when EB minima has shape similar to normal distribution. In case of narrow minima such functions have a slightly larger error. Also, function perform good fit when we fit only minima part but not all light curve.
+
+\subsection{Fitting with Polynomial Function}
+Polynomial function is fitted to light curve in a time interval $2 \Delta t$, symmetric with respect
+to the estimated minima time. The times of minima are then found using 
+the calculated first derivatives, and the resulting list is processed again in
+subsequent iterations. Two choices must be carefully made:
+\begin{enumerate}
+\item The optimal value of $\Delta t$: evidently, $\Delta t$ should comprise only those data
+that contribute to the minimum event being considered, and should exclude 
+data beyond the flection point. The time interval $\Delta t$ should by all
+means be sufficiently large to avoid small-number statistics, and the fitted
+parameters must be reasonably stable when omitting data points near the
+edges of the interval $2 \Delta t$
+\item The degree of the polynomial: parabolic fits are to be avoided, since they
+force symmetry to the data. Polynomials of third degree work well if data
+curves have a slight asymmetry, but for more extreme skewness, fourth- or
+fifth-degree polynomials may be used. The order of the polynomial should
+be appropriate in relation to the number of data points: though the formal
+goodness of fit may appear to increase with increasing polynomial degree,
+one should avoid high orders when dealing with sparse data.
+\end{enumerate}
+
+The choices are very much dictated by the data, perhaps most of all by the
+observational precision, and by the time resolution.
+The safest approach, probably, is to carry out a statistical investigation with a range of $\Delta t$ and polynomial
+degrees 3-5 for every reference phase of every variable studied, and to select the
+best-fit combination of reference phase, interval and polynomial degree for that
+particular variable.
+
+But the solution really depends on the chosen interval
+and on the number of data, we should keep in mind the rule of thumb that the order
+of the polynome should respect the number of fitted points \citep{Sterken2005basic}.
+
+\section{Phenomenological Methods}
+\label{phenom}
+\input{phenom} 
+
+\section{Template Method}
+This method is based on assumptions described in \cite{Pribula2012, Pribulla2008}. 
+%Another method is describer in \cite{Pribula2012, Pribulla2008}.
+For each EB, the fitting templates $T(x)$ is prepared to obtain the time of minimum 
+for any sufficiently long photometric sequence. In such way, not only the minima part of LC, but also other LC segments where
+the brightness sufficiently changes can be used. The template LC can be produced as the average obtained over the whole 
+available observations, or as a phenomenological model as mentioned in Section \ref{phenom}.
+
+Due to the differences in filter transparencies and wavelength response of different used detectors, 
+LC template must be formed for each filter separately and the fitting LC will be scaled to match the observations.
+It is also noted that small nightly shifts effects of the LCs observed even with the same
+instrument. Sometimes the LC shows slight but systematic slopes. These slopes are, very probably, caused by scattered
+light combined with drifting of the targets on the CCD due to imperfect tracking of the telescope.
+In order to obtain good fits of the template $T(x)$ to the observed LCs (and accurate timings), authors constructed the following
+fitting function (see \cite{Pribulla2008}):
+
+\begin{equation}\label{eq:dwarf1}
+F(x) = A+Bx+CT(x-D)
+\end{equation}
+where $T(x)$ is a LC template, $A,B$ and $C$ describe shifting,
+scaling and \textquote{slanting} of the LC template, and $D$ is shift in time to get exact time of minima. Fixing of the
+parameters are judged according to the appearance of individual LCs.
